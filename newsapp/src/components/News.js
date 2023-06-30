@@ -10,7 +10,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults,setTotalResults]= useState(0)
-  // document.title = `${this.capitlizeText(props.category)} - TimesNews`;
+  // document.title = `${capitlizeText(props.category)} - TimesNews`;
 
   // Capitalize the first letter of category title on browser tab 
   const capitlizeText = (string) => {
@@ -57,10 +57,10 @@ const News = (props) => {
   }
 
 
-  fetchMoreData = async() => {
+  const fetchMoreData = async() => {
 
-    this.setState({page: this.state.page + 1})
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${this.state.page}&pageSize=${props.pageSize}`;
+    setPage(page + 1)
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
@@ -71,17 +71,17 @@ const News = (props) => {
     return (
       <> 
         <h1 className='text-center'>TimesNews - Top {capitlizeText(props.category)} Headlines</h1>
-        {this.state.loading && <Spinner/>}  
+        {loading && <Spinner/>}  
 
         <InfiniteScroll
-          dataLength={this.state.articles.length}
-          next={this.fetchMoreData}
+          dataLength={articles.length}
+          next={fetchMoreData}
           hasMore={articles.length !== totalResults}
           loader={<Spinner/>}
         >
           <div className="container">
             <div className="row">
-              {this.state.articles.map((element) => {
+              {articles.map((element) => {
 
                 return <div className="col-md-4" key={element.url}> 
         
