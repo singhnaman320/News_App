@@ -64,21 +64,19 @@ const News = (props) => {
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
-    this.setState({
-      articles : this.state.articles.concat(parsedData.articles),
-      totalResults: parsedData.totalResults,
-    });
+    setArticles(articles.concat(parsedData.articles))
+    setTotalResults(parsedData.totalResults)
   };
 
     return (
       <> 
-        <h1 className='text-center'>TimesNews - Top {this.capitlizeText(props.category)} Headlines</h1>
+        <h1 className='text-center'>TimesNews - Top {capitlizeText(props.category)} Headlines</h1>
         {this.state.loading && <Spinner/>}  
 
         <InfiniteScroll
           dataLength={this.state.articles.length}
           next={this.fetchMoreData}
-          hasMore={this.state.articles.length !== this.state.totalResults}
+          hasMore={articles.length !== totalResults}
           loader={<Spinner/>}
         >
           <div className="container">
