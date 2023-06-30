@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
@@ -6,27 +6,19 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const News = () => {
 
+  const [articles, setState] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalResults,setTotalResults]= useState(0)
+  // document.title = `${this.capitlizeText(this.props.category)} - TimesNews`;
+
   // Capitalize the first letter of category title on browser tab 
   capitlizeText(string) {
 
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  constructor(props){
-
-    super(props);
-    console.log("Hello I an constructor from News Component")
-
-    this.state= { 
-      articles: [],
-      loading: false,
-      page: 1,
-      totalResults: 0
-    };
-    document.title = `${this.capitlizeText(this.props.category)} - TimesNews`;
-  }
-
-  async updateNews(){
+  const updateNews = async () => { 
 
     this.props.changeProgress(10);
   
