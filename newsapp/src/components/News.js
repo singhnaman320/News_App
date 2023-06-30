@@ -1,24 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export class News extends Component {
-
-  static defaultProps = {
-
-    country : "in",
-    pageSize : 8,
-    category : 'general'
-  }
-
-  static propTypes = {
-
-    country : PropTypes.string, 
-    pageSize : PropTypes.number,
-    category : PropTypes.string
-  }
+const News = () => {
 
   // Capitalize the first letter of category title on browser tab 
   capitlizeText(string) {
@@ -107,6 +93,21 @@ export class News extends Component {
       </>
     )
   }
+}
+
+
+News.defaultProps = {
+
+    country : "in",
+    pageSize : 8,
+    category : 'general'
+}
+
+News.propTypes = {
+
+    country : PropTypes.string, 
+    pageSize : PropTypes.number,
+    category : PropTypes.string
 }
 
 export default News
