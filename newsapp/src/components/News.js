@@ -4,50 +4,63 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const News = () => {
+const News = (props) => {
 
-  const [articles, setState] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults,setTotalResults]= useState(0)
-  // document.title = `${this.capitlizeText(this.props.category)} - TimesNews`;
+  // document.title = `${this.capitlizeText(props.category)} - TimesNews`;
 
   // Capitalize the first letter of category title on browser tab 
-  capitlizeText(string) {
+  const capitlizeText = (string) => {
 
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   const updateNews = async () => { 
 
-    this.props.changeProgress(10);
+    props.changeProgress(10);
   
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    this.setState({loading : true})
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+    setLoading(true)
     let data = await fetch(url);
-    this.props.changeProgress(30);
+    props.changeProgress(30);
     let parsedData = await data.json();
-    this.props.changeProgress(50);
+    props.changeProgress(50);
     console.log(parsedData);
-    this.setState({
-      articles : parsedData.articles,
-      totalResults: parsedData.totalResults,
-      loading : false
-    });
 
-    this.props.changeProgress(100);
+    setArticles(parsedData.articles)
+    setTotalResults(parsedData.totalResults)
+    setLoading(false)
+
+    props.changeProgress(100);
 
   }
 
-  async componentDidMount(){
+  useEffect(() => {
+  
+    updateNews();
 
-    this.updateNews();
+  }, [])
+
+  const handlePreviousClick = async() =>{
+
+    setPage(page - 1)
+    updateNews();
   }
+
+  const handleNextClick = async() =>{
+    
+    setPage(page + 1)
+    updateNews();
+  }
+
 
   fetchMoreData = async() => {
 
     this.setState({page: this.state.page + 1})
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${this.state.page}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
@@ -57,10 +70,9 @@ const News = () => {
     });
   };
 
-  render() {
     return (
       <> 
-        <h1 className='text-center'>TimesNews - Top {this.capitlizeText(this.props.category)} Headlines</h1>
+        <h1 className='text-center'>TimesNews - Top {this.capitlizeText(props.category)} Headlines</h1>
         {this.state.loading && <Spinner/>}  
 
         <InfiniteScroll
@@ -84,7 +96,6 @@ const News = () => {
         </InfiniteScroll>
       </>
     )
-  }
 }
 
 
