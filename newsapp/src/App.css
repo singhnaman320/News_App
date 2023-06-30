@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+#spinner{
+  width: 7%;
+  height: 7%;
+}
+
+h1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 700;
+}
+
+a{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+img{
+  height: 35vh;
+}
