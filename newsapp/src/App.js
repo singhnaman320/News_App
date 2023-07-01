@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react'
+import React, {useState} from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
 // To get Switch install react route dom version below 6.0.0 --> "npm install react-router-dom@5.2.0"
