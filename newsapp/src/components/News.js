@@ -9,7 +9,7 @@ const News = (props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [totalResults,setTotalResults]= useState(0)
+  const [totalResults,setTotalResults]= useState(0);
   // document.title = `${capitlizeText(props.category)} - TimesNews`;
 
   // Capitalize the first letter of category title on browser tab 
@@ -44,17 +44,15 @@ const News = (props) => {
 
   }, [])
 
-  const handlePreviousClick = async() =>{
+//   const handlePreviousClick = async() =>{
+//     setPage(page - 1)
+//     updateNews();
+//   }
 
-    setPage(page - 1)
-    updateNews();
-  }
-
-  const handleNextClick = async() =>{
-    
-    setPage(page + 1)
-    updateNews();
-  }
+//   const handleNextClick = async() =>{   
+//     setPage(page + 1)
+//     updateNews();
+//   }
 
 
   const fetchMoreData = async() => {
