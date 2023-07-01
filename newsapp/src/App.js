@@ -17,6 +17,8 @@ const App = () => {
     progress: 0
   }
 
+  const [progress, setProgress] = useState(0)
+
   // For Top loding bar
   setProgress = (progress) => {
 
