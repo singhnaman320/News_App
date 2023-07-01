@@ -1,12 +1,9 @@
 import './App.css';
-import React, { Component } from 'react'
+import React from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
-import{
-  BrowserRouter as Router,
-  Switch, // To get Switch install react route dom version below 6.0.0 --> "npm install react-router-dom@5.2.0"
-  Route
-}from 'react-router-dom'
+// To get Switch install react route dom version below 6.0.0 --> "npm install react-router-dom@5.2.0"
+import{BrowserRouter as Router, Switch, Route}from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar'
 
 export default class App extends Component {
