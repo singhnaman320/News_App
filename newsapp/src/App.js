@@ -13,10 +13,6 @@ const App = () => {
   const apiKey = process.env.REACT_APP_NEWS_API; // Reading API Key from .env.local file
 
   // For Top loding bar
-  state = {
-    progress: 0
-  }
-
   const [progress, setProgress] = useState(0)
 
   // For Top loding bar
