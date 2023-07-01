@@ -14,8 +14,6 @@ const App = () => {
 
   // For Top loding bar
   const [progress, setProgress] = useState(0)
-
-  // For Top loding ba
   return (
     <div>
       <Router>
