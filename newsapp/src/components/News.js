@@ -10,7 +10,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults,setTotalResults]= useState(0);
-  // document.title = `${capitlizeText(props.category)} - TimesNews`;
+
 
   // Capitalize the first letter of category title on browser tab 
   const capitlizeText = (string) => {
@@ -41,6 +41,7 @@ const News = (props) => {
   useEffect(() => {
   
     updateNews();
+    document.title = `${capitlizeText(props.category)} - TimesNews`;
 
   }, [])
 
